@@ -11,19 +11,20 @@ exports.redirect2Login = async(req, res, next) => { // console.log(req.session)
   }
 
   // check if Authorization header send
-  const authHeader = await req.get('Authorization')
-  console.log(authHeader)
-  if(!authHeader) {
-    console.log('no header Auth sent from browser')
-    return res.status(401).json({
-      success: false,
-      error: `You are not logged-in. Please login to access the data.`,
-      data: {}
-    })
-  }
+  // const authHeader = await req.get('Authorization')
+  // console.log(authHeader)
+  // if(!authHeader) {
+  //   console.log('no header Auth sent from browser')
+  //   return res.status(401).json({
+  //     success: false,
+  //     error: `You are not logged-in. Please login to access the data.`,
+  //     data: {}
+  //   })
+  // }
 
   // check if uid exist
-  const uid = authHeader.split(' ')[1] // Eg- Authorization: Bearer ejyjdgjhdgfd
+  // const uid = authHeader.split(' ')[1] // Eg- Authorization: Bearer ejyjdgjhdgfd
+  const uid = req.body.uid
   if(!uid || uid === '') {
     console.log('no token uid sent from browser')
     return res.status(401).json({
@@ -48,19 +49,20 @@ exports.redirect2Login = async(req, res, next) => { // console.log(req.session)
 exports.redirect2Home = async(req, res, next) => {
   if(req.session.userId) {
     // check if Authorization header send
-    const authHeader = await req.get('Authorization')
-    console.log(authHeader)
-    if(!authHeader) {
-      console.log('no header Auth sent from browser')
-      return res.status(401).json({
-        success: false,
-        error: `You are not logged-in. Please login to access the data.`,
-        data: {}
-      })
-    }
+    // const authHeader = await req.get('Authorization')
+    // console.log(authHeader)
+    // if(!authHeader) {
+    //   console.log('no header Auth sent from browser')
+    //   return res.status(401).json({
+    //     success: false,
+    //     error: `You are not logged-in. Please login to access the data.`,
+    //     data: {}
+    //   })
+    // }
 
     // check if uid exist
-    const uid = authHeader.split(' ')[1] // Eg- Authorization: Bearer ejyjdgjhdgfd
+    // const uid = authHeader.split(' ')[1] // Eg- Authorization: Bearer ejyjdgjhdgfd
+    const uid = req.body.uid
     if(!uid || uid === '') {
       console.log('no token uid sent from browser')
       return res.status(401).json({

@@ -4,14 +4,16 @@ import { getCookie } from '../../../utils/Cookie/Cookie'
 
 /** get dashboard */
 export const requestGetDashboard = () => { 
-  return axios.get(
+  return axios.post(
     '/api/v1/dashboard', 
     // configPrivate
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('uid')}`
-      }
-    }
+    { uid: localStorage.getItem('uid') },
+    config
+    // {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${localStorage.getItem('uid')}`
+    //   }
+    // }
   )
 }
